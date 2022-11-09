@@ -1,0 +1,41 @@
+<div id="acciones-tipo-tique" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card modal-400-width">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Acciones Tipos de Tique</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- Content ... -->
+            <div class="container has-text-black is-flex is-justify-content-center is-flex-direction-column">
+                <div class="mr-auto ml-auto mb-5 is-flex is-flex-direction-column">
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">ID:</b>  <span id="replaceTipoTiqueID"></span></p>
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">NOMBRE:</b>  <span id="replaceTipoTiqueName"></span></p>
+                </div>
+                <div class="buttons is-justify-content-center">
+                    <a id="update-trigger" class="button is-warning">Actualizar</a>
+                    <form method="GET" action="<?=BASE_URL?>">
+                        <button id="delete-tipo-tique" class="button is-danger default-get-request">Eliminar</button>
+                    </form>
+                </div>
+                <div id="update-action-container"  class="is-200-width m-auto">
+                    <form action="<?=BASE_URL?>/tipos-tique/actualizar/" method="post">
+                        <input id="tipo-tique-id-input" type="hidden" value="" name="id_tipo">
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">Nuevo Nombre</label>
+                                <input class="input clean-input" type="text" name="nombre" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control has-text-centered">
+                                <button class="button is-warning default-get-request">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="<?=BASE_URL?>/js/modal/modals-info.js"></script>

@@ -1,0 +1,46 @@
+<div id="acciones-criticidad" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card modal-400-width">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Acciones Criticidad</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- Content ... -->
+            <div class="container has-text-black is-flex is-justify-content-center is-flex-direction-column">
+                <div class="mr-auto ml-auto mb-5 is-flex is-flex-direction-column">
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">ID:</b>  <span id="replaceCriticidadID"></span></p>
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">NOMBRE:</b>  <span id="replaceCriticidadName"></span></p>
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">VALOR:</b>  <span id="replaceCriticidadValor"></span></p>
+                </div>
+                <div class="buttons is-justify-content-center">
+                    <a id="update-trigger" class="button is-warning">Actualizar</a>
+                    <form action="<?=BASE_URL?>">
+                        <button id="delete-criticidad" class="button is-danger default-get-request">Eliminar</button>
+                    </form>
+                </div>
+                <div id="update-action-container" class="is-200-width m-auto">
+                    <form action="<?=BASE_URL?>/criticidad/actualizar/" method="post">
+                        <input id="criticidad-id-input" type="hidden" value="" name="id_criticidad">
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">Nuevo Nombre</label>
+                                <input class="input clean-input" type="text" name="nombre" required>
+                            </div>
+                            <div class="control">
+                                <label class="label">Nuevo Valor</label>
+                                <input class="input clean-input" type="number" min="0" name="valor" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control has-text-centered">
+                                <button class="button is-warning default-get-request">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="<?=BASE_URL?>/js/modal/modals-info.js"></script>

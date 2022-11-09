@@ -1,0 +1,19 @@
+<?php if(isset($_SESSION['success-message']) || isset($_SESSION['error-message'])):?>
+    <div class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-card modal-450-width">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Mensaje</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <!-- Content ... -->
+                <p class="is-text has-text-centered"><?=$_SESSION['success-message'] ?? $_SESSION['error-message']?></p>
+            </section>
+        </div>
+    </div>
+    <?php
+    \SistemaTique\Helpers\Helpers::removeSession('success-message');
+    \SistemaTique\Helpers\Helpers::removeSession('error-message');
+    ?>
+<?php endif;?>

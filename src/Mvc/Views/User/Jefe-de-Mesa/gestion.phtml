@@ -1,0 +1,58 @@
+<?php
+
+/** @var $rolId */
+/** @var $manageView */
+/** @var $tiqueStats */
+
+?>
+<?php require_once __DIR__ . '../../messages-modal.phtml' ?>
+<div class="columns">
+    <div class="column pt-0">
+        <aside id="menuJefeMesa" class="menu p-4 has-background-white">
+            <p class="menu-label">
+                Administración
+            </p>
+            <ul class="menu-list">
+                <li><a href="<?=BASE_URL?>/admin-home/">Dashboard</a></li>
+                <li>
+                    <div class="dropdown is-hoverable is-block">
+                        <div class="dropdown-trigger">
+                            <a class="" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <span>Usuarios</span>
+                                <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+                            </a>
+                        </div>
+                        <div class="dropdown-menu has-addons-fullwidth is-100-width" id="dropdown-menu4" role="menu">
+                            <div class="dropdown-content">
+                                <a id="usuarios-1" href="<?=BASE_URL?>/admin-home/usuarios/crear" class="dropdown-item">
+                                    Crear Nuevo
+                                </a>
+                                <a id="usuarios-2" href="<?=BASE_URL?>/admin-home/usuarios/" class="dropdown-item">
+                                    Ver listado
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a id="criticidad" href="<?=BASE_URL?>/admin-home/criticidad/">Criticidad</a></li>
+                <li><a href="<?=BASE_URL?>/admin-home/tipos-tique/" >Tipo Tiques</a> </li>
+                <li><a id="tipoArea" href="<?=BASE_URL?>/admin-home/areas/">Áreas</a></li>
+                <li><a href="<?=BASE_URL?>/admin-home/tiques/" >Tiques</a> </li>
+                <li><a href="<?=BASE_URL?>/admin-home/perfil/" >Ver Perfil</a> </li>
+            </ul>
+        </aside>
+    </div>
+    <div id="rootContainer" class="column is-three-quarters has-text-white is-bordered has-background-white">
+      <div class="p-4 is-flex is-justify-content-center container" id="root">
+          <?php if( isset($manageView) ): ?>
+            <?php require_once __DIR__.'/'.$manageView.'.phtml'; ?>
+          <?php elseif( isset($profileView) ): ?>
+              <?php require_once __DIR__.'/../'.$profileView.'.phtml' ?>
+          <?php else: ?>
+            <?php require_once __DIR__.'/dashboard.phtml'; ?>
+          <?php endif; ?>
+      </div>
+    </div>
+</div>
+
+

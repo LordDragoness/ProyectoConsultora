@@ -1,0 +1,137 @@
+<?php
+/** @var $clientInfo */
+/** @var $tiposTique */
+/** @var $tipoAreas */
+/** @var $criticidades */
+/** @var $selectsData */
+
+if( isset($selectsData) ) {
+    $tipoAreas = $selectsData['tipoAreas'];
+    $tiposTique = $selectsData['tiposTique'];
+    $criticidades = $selectsData['criticidades'];
+}
+
+?>
+<?php if( !isset($_SESSION['clientInfo']) ): ?>
+<div class="has-text-black is-full has-border p-4 is-bordered max-width-320">
+    <form id="form-1" action="<?=BASE_URL?>/clientes/verificar/" method="POST">
+        <div class="field is-grouped is-justify-content-center">
+            <div class="control">
+                <label class="label is-size-6">RUT</label>
+                <input id="rut-1" data-form="form-1" type="text" class="input" name="rut" required placeholder="Sin puntos y con guión"/>
+            </div>
+        </div>
+        <div>
+            <p id="error" class="has-text-danger has-text-centered"></p>
+        </div>
+        <div class="field is-grouped is-center has-text-justified">
+            <span class="is-text is-size-6">*Ingrese el rut del cliente para verificar si está registrado en el sistema</span>
+        </div>
+        <div class="field has-text-centered">
+            <div class="control">
+                <button class="button is-success m-3 is-size-6 rut-btn-verify" data-target="rut-1">Verificar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<?php else: ?>
+    <?php require_once __DIR__.'/modal/modal-tiques.phtml';?>
+    <div class="has-text-black is-full has-border p-4 is-bordered">
+        <?php if( empty($_SESSION['clientInfo']) ) $_SESSION['newClient'] = true ?>
+        <?php if( !empty($_SESSION['clientInfo']) ) $_SESSION['newClient'] = false ?>
+        <?php $disabled = !empty($_SESSION['clientInfo']) ? 'readonly' : '' ?>
+        <form id="tique-form" action="<?=BASE_URL?>/tiques/crear/" method="POST">
+            <div class="field is-grouped is-grouped-centered is-grouped-multiline">
+                <div class="control">
+                    <label class="label is-size-6">RUT</label>
+                    <input id="rut-2" data-form="tique-form" type="text" class="input prev-input" data-target="prev-rut" value="<?=$_SESSION['clientInfo']->rut_cliente ?? ''?><?=$_SESSION['clientRUT'] ?? null?>"  name="rut_cliente" required placeholder="Sin puntos y con guión" <?=$disabled?>/>
+                </div>
+                <div class="control">
+                    <label class="label is-size-6">Nombre</label>
+                    <input type="text" class="input prev-input" data-target="prev-nombre" value="<?=$_SESSION['clientInfo']->nombre ?? ''?>" name="nombre" <?=$disabled?> />
+                </div>
+                <idv class="control">
+                    <label class="label">Apellido</label>
+                    <input class="input prev-input" type="text" data-target="prev-apellido" value="<?=$_SESSION['clientInfo']->apellido ?? ''?>"  name="apellido" required <?=$disabled?>/>
+                </idv>
+            </div>
+            <div class="field is-grouped is-grouped-centered is-grouped-multiline">
+                <div class="control">
+                    <label class="label">Fecha Nacimiento</label>
+                    <input type="date" class="input prev-input" data-target="prev-fecha" value="<?=$_SESSION['clientInfo']->fecha_nacimiento ?? ''?>" name="fecha_nacimiento" required <?=$disabled?>/>
+                </div>
+                <div class="control">
+                    <label class="label">Correo</label>
+                    <input class="input prev-input email-inputs" type="email" data-target="prev-correo" value="<?=$_SESSION['clientInfo']->correo ?? ''?>" name="correo" required <?=$disabled?>/>
+                </div>
+                <div class="field">
+                    <div class="control mb-2">
+                        <label class="label">Teléfono</label>
+                    </div>
+                    <div class="field has-addons">
+                        <p class="control">
+                            <a class="button is-static">
+                                +56
+                            </a>
+                        </p>
+                        <p class="control">
+                            <input type="text" class="input prev-input phone-inputs" data-target="prev-telefono" value="<?=$_SESSION['clientInfo']->telefono ?? ''?>" name="telefono" required <?=$disabled?>  placeholder="9XXXXXXXX"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-grouped-multiline is-grouped is-grouped-centered">
+                <div class="control">
+                    <label class="label">Criticidad</label>
+                    <div class="select">
+                        <select class="input prev-input" data-select="true" data-target="prev-criticidad" name="id_criticidad">
+                            <?php foreach ($criticidades as $criticidad): ?>
+                                <option value="<?=$criticidad['id_criticidad']?>"><?=$criticidad['nombre']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control">
+                    <label class="label">Tipo Tique</label>
+                    <div class="select">
+                        <select class="input prev-input" data-select="true" data-target="prev-tipo-tique" name="id_tipo">
+                            <?php foreach ($tiposTique as $tipo): ?>
+                                <option value="<?=$tipo['id_tipo']?>"><?=$tipo['nombre']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control">
+                    <label class="label">Area</label>
+                    <div class="select">
+                        <select class="input prev-input" data-select="true" data-target="prev-area" name="id_area">
+                            <?php foreach ($tipoAreas as $area): ?>
+                                <option value="<?=$area['id_area']?>"><?=$area['nombre']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-grouped is-grouped-centered is-grouped-multiline">
+                <div class="control is-45percent-witdth">
+                    <label class="label">Detalle Problema</label>
+                    <textarea name="detalle_problema" class="textarea is-success prev-input" data-target="prev-problema" placeholder="" required></textarea>
+                </div>
+                <div class="control is-45percent-witdth">
+                    <label class="label">Detalle Servicio</label>
+                    <textarea name="detalle_servicio" class="textarea is-success prev-input" data-target="prev-servicio" placeholder="" required></textarea>
+                </div>
+            </div>
+        </form>
+        <div class="field is-grouped is-justify-content-space-between mt-3">
+            <div class="control">
+                <span id="error" class="has-text-danger is-text"></span>
+            </div>
+            <div class="control is-flex is-justify-content-end">
+                <button id="prev-button" class="button is-success m-3 is-size-6 js-modal-trigger" data-target="previa-tiques">Previsualizar</button>
+            </div>
+        </div>
+    </div>
+<?php endif;?>
+<?php \SistemaTique\Helpers\Helpers::removeSession('clientInfo') ?>
+<?php \SistemaTique\Helpers\Helpers::removeSession('clientRUT') ?>

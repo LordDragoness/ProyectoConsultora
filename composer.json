@@ -1,0 +1,32 @@
+{
+    "name": "benja/sistematique",
+    "description": "Sistema de Gestión de Tiques de ayuda\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[t\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[g\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SistemaTique\\": "src/"
+        }
+    },
+    "scripts": {
+        "audit": "--audit",
+        "phpunit": ["@php vendor/phpunit/phpunit/phpunit", "phpunit"]
+    },
+    "authors": [
+        {
+            "name": "Benjamin Flores",
+            "email": "benjamin.floresv@protonmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^3.1",
+        "pecee/simple-router": "4.3.7.2",
+        "ext-pdo": "*",
+      "ext-curl": "*",
+        "hackzilla/password-generator": "^1.6",
+      "ext-iconv": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

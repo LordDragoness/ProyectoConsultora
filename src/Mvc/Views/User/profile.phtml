@@ -1,0 +1,78 @@
+<?php
+
+/** @var $profileData */
+
+?>
+
+<div class="has-text-black">
+    <div class="container">
+        <div id="profile-info-container">
+            <h2 class="title is-size-4 has-text-centered">Datos Personales</h2>
+            <div class="columns">
+                <div class="column">
+                    <p class="is-text"><span class="has-text-weight-bold">Rut:</span> <span class="is-text"><?=$profileData['rut']?></span></p>
+                    <p class="is-text"><span class="has-text-weight-bold">Nombre:</span> <span class="is-text"><?=$profileData['nombre']?></span></p>
+                    <p class="is-text"><span class="has-text-weight-bold">Apellido:</span> <span class="is-text"><?=$profileData['apellido']?></span></p>
+                    <p class="is-text"><span class="has-text-weight-bold">Fecha Nacimiento:</span> <span class="is-text"><br><?=$profileData['fechaNacimiento'] ?? 'No ingresada'?></span></p>
+
+                </div>
+                <div class="column">
+                    <p class="is-text"><span class="has-text-weight-bold">Correo:</span> <span class="is-text"><?=$profileData['correo']?></span></p>
+                    <p class="is-text"><span class="has-text-weight-bold">Teléfono:</span> <span class="is-text"><?=$profileData['telefono']?></span></p>
+                </div>
+            </div>
+            <h2 class="title is-size-4 has-text-centered mt-5">Cargo Administrativo</h2>
+            <div class="columns">
+                <div class="column has-text-centered">
+                    <p class="is-text"><span class="has-text-weight-bold">Rol:</span> <span class="is-text"><?=$profileData['nombreTipo']?></span></p>
+                    <p class="is-text"><span class="has-text-weight-bold">Área:</span> <span class="is-text"><?=$profileData['nombreArea']?></span></p>
+
+                </div>
+            </div>
+        </div>
+        <?php if( $profileData['expiracionPassword'] !== null ):?>
+        <div id="change-password-warning" class="mt-5 mb-5">
+            <p class="is-text has-text-danger">Hemos detectado que no has cambiado tu contraseña aún.</p>
+            <p class="is-text has-text-danger ">Porfavor cambia tu contraseña o tu cuenta será bloqueda.</p>
+            <p class="is-text has-text-centered mt-3">Días restantes para bloqueo: <?=round(( intval($profileData['expiracionPassword']) - time())/86400, 0, PHP_ROUND_HALF_UP)?></p>
+            <div class="is-block has-text-centered mt-5"><button id="change-pass" class="button mr-auto ml-auto">Cambiar Contraseña</button> </div>
+        </div>
+        <div id="change-pass-container" class="columns is-justify-content-center mt-5">
+            <div class="column pl-2 pr-2 is-full-desktop is-full-widescreen is-three-fifths-mobile is-three-quarters-tablet">
+                <form id="change-pass-form" method="POST" action="<?=BASE_URL?>/actualizar-password/">
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Nueva Contraseña</label>
+                            <input id="PassEntry" class="input" type="password" name="password">
+                        </div>
+                        <span id="StrengthDisp" class="badge displayBadge has-text-white">Débil</span>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Repetir Contraseña</label>
+                            <input id="PassRepeatEntry" class="input" type="password" name="repeat_password">
+                        </div>
+                    </div>
+                    <span id="error" class="is-text is-block has-text-danger mb-4"></span>
+                    <div class="field has-text-centered">
+                        <div class="control">
+                            <button id="pass-btn" class="button is-success">Cambiar</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="is-block mt-5">
+                    <p class="is-text has-text-weight-bold mb-2">Recomendaciones</p>
+                    <ul class="pl-2 is-size-7">
+                        <li><span class="is-text">- Al menos un caracter especial( Ejm: #,&,$)</span></li>
+                        <li><span class="is-text">- Mínimo debe contener 8 caracteres</span></li>
+                        <li><span class="is-text">- Debe contener números</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="<?=BASE_URL?>/js/validations/validate-pass.js?t=<?=time()?>"></script>
+        <?php endif; ?>
+    </div>
+</div>
+
+

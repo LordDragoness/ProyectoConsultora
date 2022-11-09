@@ -1,0 +1,30 @@
+<?php if(isset($_SESSION['numberOfPage'])): ?>
+    <nav class="pagination is-centered m-0 mb-3" role="navigation" aria-label="pagination">
+        <ul class="pagination-list">
+            <?php for( $page=1; $page <= $_SESSION['numberOfPage']; $page++):?>
+                <?php
+                $pagePosition = strpos($_SERVER['REQUEST_URI'], 'page=');
+
+                if( $pagePosition !== false ) {
+                    $pageUri = substr_replace($_SERVER['REQUEST_URI'], "page=$page", $pagePosition, 6);
+                } elseif (count($_GET) <= 1) {
+                    $pageUri = $_SERVER['REQUEST_URI'].'?page='.$page;
+                }else {
+                    $pageUri = $_SERVER['REQUEST_URI'].'&page='.$page;
+                }
+
+                ?>
+                <?php if($page == $_GET['page']): ?>
+                    <li>
+                        <a href="<?=$pageUri?>" class="pagination-link is-current has-background-grey-dark" aria-label="Page <?=$page?>" aria-current="page"><?=$page?></a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="<?=$pageUri?>" class="pagination-link" aria-label="Page <?=$page?>" aria-current="page"><?=$page?></a>
+                    </li>
+                <?php endif;?>
+            <?php endfor; ?>
+        </ul>
+    </nav>
+<?php endif; ?>
+<?php \SistemaTique\Helpers\Helpers::removeSession('numberOfPage');?>

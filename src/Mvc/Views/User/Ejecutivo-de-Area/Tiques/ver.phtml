@@ -1,0 +1,53 @@
+<?php
+
+/** @var $data */
+/** @var  $selectsData */
+
+
+?>
+
+<?php require_once __DIR__.'/modal/modal-tiques.phtml'?>
+<div id="jefe-mesa-usuario-2" class="is-100-width has-text-black is-full p-2 is-bordered">
+    <div class="is-text has-text-black">
+    </div>
+    <div class="table-container is-100-width">
+        <table class="table is-100-width">
+            <thead class="has-text-centered thead-centered">
+            <tr >
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Criticidad</th>
+                <th>Area</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody class="tbody-centered">
+            <?php foreach ($data as $tique): ?>
+                <tr class="has-text-centered">
+                    <td class="pt-2 pb-2 prev-input" data-target="prev-nombre-cliente"><?=$tique['nombreCliente']?></td>
+                    <td class="pt-2 pb-2 prev-input" data-target="prev-fecha"><?=$tique['fecha_creacion']?></td>
+                    <td class="pt-2 pb-2 prev-input" data-target="prev-tipo-tique"><?=$tique['nombre_ttique']?></td>
+                    <td class="pt-2 pb-2 prev-input" data-target="prev-criticidad"><?=$tique['nombre_criticidad']?></td>
+                    <td class="pt-2 pb-2 prev-input" data-target="prev-area"><?=$tique['nombre_area']?></td>
+                    <td class="pt-2 pb-2 prev-input" data-target="prev-estado"><?=$tique['nombre_etique']?></td>
+
+                    <td class="is-hidden prev-input" data-target="prev-id-tique"><?=$tique['id_tique']?></td>
+                    <td class="is-hidden prev-input" data-target="prev-problema"><?=$tique['detalle_problema']?></td>
+                    <td class="is-hidden prev-input" data-target="prev-servicio"><?=$tique['detalle_servicio']?></td>
+                    <td class="is-hidden prev-input" data-target="prev-rut-cliente"><?=$tique['rut_cliente']?></td>
+                    <td class="is-hidden prev-input" data-target="prev-telefono-cliente"><?=$tique['telefonoCliente']?></td>
+                    <td class="is-hidden prev-input" data-target="prev-correo-cliente"><?=$tique['correoCliente']?></td>
+
+                    <td class="pt-2 pb-2">
+                        <button class="button is-success is-size-7 js-modal-trigger cerrar-tiques tiques-prev-buttons" data-target="cerrar-tiques">Ver Tique</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php require_once __DIR__.'../../../pagination.phtml'?>
+    </div>
+</div>
+

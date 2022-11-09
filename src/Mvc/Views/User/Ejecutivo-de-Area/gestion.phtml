@@ -1,0 +1,34 @@
+<?php
+
+/** @var $rolId */
+/** @var $manageView */
+?>
+
+<?php require_once __DIR__ . '../../messages-modal.phtml' ?>
+<div class="columns">
+    <div class="column pt-0">
+        <aside id="menuJefeMesa" class="menu p-4 has-background-white">
+            <p class="menu-label">
+                Administración
+            </p>
+            <ul class="menu-list">
+                <li><a id="criticidad" href="<?=BASE_URL?>/admin-home/">Dashboard</a></li>
+                <li><a id="criticidad" href="<?=BASE_URL?>/admin-home/tiques/">Ver Tiques</a></li>
+                <li><a href="<?=BASE_URL?>/admin-home/perfil/" >Ver Perfil</a> </li>
+            </ul>
+        </aside>
+    </div>
+    <div id="rootContainer" class="column is-three-quarters has-text-white is-bordered has-background-white">
+        <div class="p-4 is-flex is-justify-content-center container" id="root">
+
+            <?php if( isset($manageView) ): ?>
+                <?php require_once __DIR__.'/'.$manageView.'.phtml'; ?>
+            <?php elseif( isset($profileView) ): ?>
+                <?php require_once __DIR__.'/../'.$profileView.'.phtml' ?>
+            <?php else: ?>
+                <?php require_once __DIR__.'/dashboard.phtml'; ?>
+            <?php endif; ?>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<?php
+
+/** @var $estadosTique */
+if( isset($selectsData) ) {
+    $estadosTique = $selectsData['estadosTique'];
+
+}
+?>
+
+<div id="cerrar-tiques" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Resolución</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- Content ... -->
+
+            <div class="columns has-text-black">
+                <div class="column pl-6">
+                    <p class="is-text"><b class="mr-2">Rut:</b>  <span id="prev-rut-cliente"></span></p>
+                    <p class="is-text"><b class="mr-2">Nombre:</b>  <span id="prev-nombre-cliente"></span></p>
+                    <p class="is-text"><b class="mr-2">Fecha Nacimiento:</b>  <span id="prev-fecha"></span></p>
+                    <p class="is-text"><b class="mr-2">Teléfono:</b>  <span id="prev-telefono-cliente"></span>
+                    <p class="is-text"><b class="mr-2">Correo:</b>  <span id="prev-correo-cliente"></span></p>
+                </div>
+                <div class="column pl-6">
+                    <p class="is-text"><b class="mr-2">Criticidad:</b>  <span id="prev-criticidad"></span>
+                    <p class="is-text"><b class="mr-2">Tipo Tique:</b>  <span id="prev-tipo-tique"></span></p>
+                    <p class="is-text"><b class="mr-2">Area:</b>  <span id="prev-area"></span>
+                    <p class="is-text"><b class="mr-2">Estado:</b>  <span id="prev-estado"></span>
+                </div>
+            </div>
+            <div class="pl-5">
+                <div class="has-text-black pl-3 mb-4">
+                    <p class="is-text has-text-weight-bold">Detalle Problema</p>
+                    <p id="prev-problema" class="is-text"></p>
+                </div>
+                <div class="has-text-black pl-3">
+                    <p class="is-text has-text-weight-bold">Detalle Servicio</p>
+                    <p id="prev-servicio" class="is-text"></p>
+                </div>
+            </div>
+            <div class="pl-5 pr-5 mt-6">
+                <h2 class="title pl-3 mt-4 is-size-5 has-text-weight-bold">Cerrar Tique</h2>
+                <form id="form-cerrar-tique" action="<?=BASE_URL?>/tiques/cerrar/" method="POST">
+                    <input id="prev-id-tique" type="hidden" value="" name="id_tique">
+                    <div class="field pl-3">
+                        <div class="control">
+                            <label class="label">Estado</label>
+                            <div class="select">
+                                <select class="input" name="id_estado">
+                                    <?php foreach ($estadosTique as $estado): ?>
+                                    <option value="<?=$estado['id_estado']?>"><?=$estado['nombre']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field p-3">
+                        <div class="control">
+                            <label class="label">Observación</label>
+                            <textarea id="observacion" class="textarea" name="observacion"></textarea>
+                        </div>
+                    </div>
+                    <div id="error" class="has-text-danger"></div>
+                </form>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button id="button-cerrar-tique" data-form="form-cerrar-tique" class="button do-not-close is-danger">Enviar</button>
+            <button class="button is-warning">Salir</button>
+        </footer>
+    </div>
+</div>
+<script src="<?=BASE_URL?>/js/modal/modals-info.js?t=1491313943549"></script>

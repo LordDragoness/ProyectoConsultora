@@ -1,0 +1,56 @@
+<?php
+/** @var $data */
+?>
+
+<?php require_once __DIR__.'/modal/modal-criticidad.phtml'?>
+<div class="has-text-black is-full is-bordered p-4 is-100-width">
+    <div class="columns pr-1 pl-1">
+        <div class="column auto mr-3 has-border">
+            <div class="table-container is-100-width">
+                <table class="table is-100-width">
+                    <thead class="has-text-centered thead-centered">
+                    <tr >
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>VALOR</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tbody-centered">
+                    <?php foreach ($data as $criticidad): ?>
+                        <tr class="has-text-centered">
+                            <th class="pt-2 pb-2"><?=$criticidad['id_criticidad']?></th>
+                            <td class="pt-2 pb-2"><?=$criticidad['nombre']?></td>
+                            <td class="pt-2 pb-2"><?=$criticidad['valor']?></td>
+                            <td class="pt-2">
+                                <button class="button is-success is-size-7 acciones-criticidad js-modal-trigger" data-target="acciones-criticidad">Acciones</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="column is-one-quarter ml-3 p-5 has-border">
+            <h2 class="title is-size-4">Nueva Criticidad</h2>
+            <form action="<?=BASE_URL.'/criticidad/crear/'?>" method="POST">
+                <div class="field">
+                    <div class="control">
+                        <label class="label is-size-6">Nombre</label>
+                        <input type="text" class="input" name="nombre" required/>
+                    </div>
+                    <div class="control">
+                        <label class="label is-size-6">Valor</label>
+                        <input type="number" class="input number" min="0" name="valor" required/>
+                    </div>
+                </div>
+                <div class="field has-text-centered">
+                    <div class="control">
+                        <button class="button is-success m-3 is-size-6 default-get-request"  >Ingresar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

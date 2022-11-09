@@ -1,0 +1,85 @@
+<?php
+/** @var $selectsData */
+/** @var $tiposUsuarios */
+/** @var $tipoAreas */
+
+$tipoAreas = $selectsData['tipoAreas'];
+$tiposUsuarios = $selectsData['tiposUsuarios'];
+
+?>
+<div id="jefe-mesa-usuario-1" class="has-text-black is-full has-border p-4 is-bordered">
+    <form id="user-form" action="<?=BASE_URL?>/usuarios/crear" method="POST">
+        <div class="field is-grouped">
+            <div class="control">
+                <label class="label is-size-6">RUT</label>
+                <input id="rut-3" type="text" class="input" name="rut" placeholder="Sin puntos y con guion" data-form="user-form" required/>
+            </div>
+            <div class="control">
+                <label class="label is-size-6">Correo</label>
+                <input type="email" class="input email-inputs" placeholder="ejemplo@ejemplo.com" name="correo"required/>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <label class="label is-size-6">Nombre</label>
+                <input type="text" class="input prev-input" name="nombre" required/>
+            </div>
+            <div class="control">
+                <label class="label is-size-6">Apellido</label>
+                <input type="text" class="input prev-input" name="apellido" required/>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <label class="label">Fecha Nacimiento</label>
+                <input type="date" class="input prev-input" data-target="prev-fecha" value="" name="fecha_nacimiento" required/>
+            </div>
+            <div class="field">
+                <div class="control mb-2">
+                    <label class="label">Teléfono</label>
+                </div>
+                <div class="field has-addons">
+                    <p class="control">
+                        <a class="button is-static">
+                            +56
+                        </a>
+                    </p>
+                    <p class="control">
+                        <input type="text" class="input prev-input phone-inputs" data-target="prev-telefono" value="" name="telefono" required  placeholder="9XXXXXXXX"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="field is-grouped is-center">
+            <div class="control">
+                <label class="label is-size-6">Tipo de Usuario</label>
+                <div class="select">
+                    <select class="input" name="id_tipo" required>
+                        <?php foreach ($tiposUsuarios as $tiposUsuario ): ?>
+                            <option value="<?=$tiposUsuario['id_tipo']?>"><?=$tiposUsuario['nombre']?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+            </div>
+            <div class="control">
+                <label class="label is-size-6">Área</label>
+                <div class="select">
+                    <select class="input" name="id_area">
+                        <?php foreach ($tipoAreas as $area ): ?>
+                            <option value="<?=$area['id_area']?>"><?=$area['nombre']?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field has-text-centered">
+            <div class="control">
+                <button class="button is-success m-3 is-size-6 rut-btn-verify" data-target="rut-3">Ingresar</button>
+            </div>
+        </div>
+        <div>
+            <span id="error" class="has-text-danger"></span>
+        </div>
+
+    </form>
+</div>

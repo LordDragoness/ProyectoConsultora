@@ -1,0 +1,197 @@
+<?php
+
+/** @var $data */
+/** @var  $selectsData */
+
+$tipoAreas = $selectsData['tipoAreas'];
+$tiposTique = $selectsData['tiposTique'];
+$criticidades = $selectsData['criticidades'];
+
+?>
+<div id="jefe-mesa-usuario-2" class="is-100-width has-text-black is-full p-2 is-bordered">
+    <div class="is-text has-text-black">
+        <form id="tique-search" action="<?=BASE_URL?>/admin-home/tiques/" method="GET">
+            <div style="min-height: 50px" class="is-block is-relative">
+                <div class="field is-inline-flex is-flex-direction-row">
+                    <div id="dropdown-1" class="dropdown mr-2">
+                        <div class="dropdown-trigger">
+                            <button class="button js-dropdown-trigger" aria-haspopup="true" data-target="dropdown-1" aria-controls="dropdown-menu2">
+                                <span>Filtros</span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down is-success" aria-hidden="true"></i>
+                                  </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu has-max-content-width" id="dropdown-menu2" role="menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <label class="label">Fecha</label>
+                                            <input id="fecha" value="<?=date("Y-m-d", time())?>" class="input" type="date" <?=isset($_GET['fecha']) ? "name='fecha'" : ''; ?>>
+                                        </div>
+                                        <div class="control">
+                                            <label class="label">Criticidad</label>
+                                            <div class="select">
+                                                <select id="tipoCriticidad-select" class="input" <?=isset($_GET['id_criticidad']) ? "name='id_criticidad'" : ''; ?>>
+                                                    <?php foreach ($criticidades as $criticidad): ?>
+                                                        <option value="<?=$criticidad['id_criticidad']?>"><?=$criticidad['nombre']?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <label class="label">Tipo Tique</label>
+                                            <div class="select">
+                                                <select id="tipoTique-select" class="input" <?=isset($_GET['id_tipo']) ? "name='id_tipo'" : ''; ?>>
+                                                    <?php foreach ($tiposTique as $tipo): ?>
+                                                        <option value="<?=$tipo['id_tipo']?>"><?=$tipo['nombre']?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control">
+                                            <label class="label">Area</label>
+                                            <div class="select">
+                                                <select id="tipoArea-select" class="input" <?=isset($_GET['id_area']) ? "name='id_area'" : ''; ?>>
+                                                    <?php foreach ($tipoAreas as $area): ?>
+                                                        <option value="<?=$area['id_area']?>"><?=$area['nombre']?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="dropdown-divider">
+                                <div class="dropdown-item">
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <label class="label">
+                                                Aplicar:
+                                            </label>
+                                        </div>
+                                        <div class="field ml-5">
+                                            <div class="control">
+                                                <label class="checkbox mr-3">
+                                                    Tipo Tique
+                                                    <input class="checks-for-name" type="checkbox" data-target="tipoTique-select" data-name="id_tipo" <?=isset($_GET['id_tipo']) ? "checked" : ''; ?>>
+                                                </label>
+                                                <label class="checkbox">
+                                                    Criticidad
+                                                    <input class="checks-for-name" type="checkbox" data-target="tipoCriticidad-select" data-name="id_criticidad" <?=isset($_GET['id_criticidad']) ? "checked" : ''; ?>>
+                                                </label>
+
+                                            </div>
+                                            <div class="control mt-3">
+                                                <label class="checkbox is-5 mr-3">
+                                                    Fecha
+                                                    <input class="checks-for-name" type="checkbox" data-target="fecha" data-name="fecha" <?=isset($_GET['fecha']) ? "checked" : ''; ?>>
+                                                </label>
+                                                <label class="checkbox">
+                                                    Area
+                                                    <input class="checks-for-name" type="checkbox" data-target="tipoArea-select" data-name="id_area" <?=isset($_GET['id_area']) ? "checked" : ''; ?>>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <label class="label">
+                                                Ordenar por:
+                                            </label>
+                                        </div>
+                                        <div class="field ml-5">
+                                            <div class="control">
+                                                <label class="checkbox mr-3">
+                                                    Fecha de creación
+                                                    <input id="orderByFecha" data-order="true" class="checks-for-name" type="checkbox" data-target="orderByFecha" data-name="orderByFecha" <?=isset($_GET['orderByFecha']) ? "name='orderByFecha' checked" : ''; ?>>
+                                                </label>
+                                                <label class="checkbox">
+                                                    Criticidad
+                                                    <input id="orderByCriticidad" data-order="true" class="checks-for-name" type="checkbox" data-target="orderByCriticidad" data-name="orderByCriticidad" <?=isset($_GET['orderByCriticidad']) ? "name='orderByCriticidad' checked" : ''; ?>>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if( isset($_GET) && !empty($_GET) && count($_GET) > 1 ): ?>
+                    <div class="field">
+                        <div class="control">
+                            <a href="<?=BASE_URL?>/admin-home/tiques/" class="button" aria-haspopup="true" data-target="dropdown-1" aria-controls="dropdown-menu2">
+                                <span>Quitar Filtros</span>
+                            </a>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <div style="right: 100px" class="field is-grouped is-inline-flex is-absolute">
+                    <div class="control">
+                        <label class="checkbox radio-text">
+                            Creado por
+                            <input class="checks-for-name" type="radio" name="aux-radio-name" data-name="rut_usuario_crea" data-target="rut">
+                        </label>
+                        <div class="control">
+                            <label class="checkbox radio-text">
+                                Cerrado por
+                                <input class="checks-for-name"  type="radio" name="aux-radio-name" data-name="rut_usuario_cierra" data-target="rut">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <label class="checkbox radio-text">
+                            Ninguno
+                            <input id="ninguno" class="checks-for-name" type="radio" name="aux-radio-name" data-name="disabled" data-target="rut" checked>
+                        </label>
+                    </div>
+                    <div class="control">
+                        <span id="error" style="top: -25px;left: 27%; z-index: 2" class="is-absolute has-text-danger"></span>
+                        <input id="rut" data-form="tique-search" type="text" class="input" disabled required placeholder="Ingrese RUT de la persona">
+                    </div>
+                </div>
+                <div style="right: 0" class="field is-inline-block is-absolute">
+                    <div class="control">
+                        <button class="button is-success rut-btn-verify" data-target="rut">BUSCAR</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="table-container is-100-width">
+        <table class="table is-100-width">
+            <thead class="has-text-centered thead-centered">
+            <tr >
+                <th>Creado Por</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Criticidad</th>
+                <th>Area</th>
+                <th>Estado</th>
+            </tr>
+            </thead>
+            <tbody class="tbody-centered">
+            <?php if( !empty($data) ) : ?>
+            <?php foreach ($data as $tique): ?>
+                <tr class="has-text-centered">
+                    <td class="pt-2 pb-2"><?=$tique['nombre_creador']?></td>
+                    <td class="pt-2 pb-2"><?=$tique['fecha_creacion']?></td>
+                    <td class="pt-2 pb-2"><?=$tique['nombre_ttique']?></td>
+                    <td class="pt-2 pb-2"><?=$tique['nombre_criticidad']?></td>
+                    <td class="pt-2 pb-2"><?=$tique['nombre_area']?></td>
+                    <td class="pt-2 pb-2"><?=$tique['nombre_etique']?></td>
+                </tr>
+            <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td  class="pt-5" colspan="6">No se encontraron resultados</td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+        <?php require_once __DIR__.'../../../pagination.phtml'?>
+    </div>
+</div>

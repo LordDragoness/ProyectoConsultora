@@ -1,0 +1,23 @@
+
+
+<section class="section is-100v-height">
+    <div class="container">
+
+        <?php
+        switch($_SESSION['user']['id_tipo']){
+            case 2:
+                require_once __DIR__ . '/Jefe-de-Mesa/gestion.phtml';
+                break;
+            case 1:
+                require_once __DIR__.'/Ejecutivo-de-Mesa/gestion.phtml';
+                break;
+            case 3:
+                require_once __DIR__.'/Ejecutivo-de-Area/gestion.phtml';
+                break;
+            default;
+                echo 'No existe usuario';
+
+        }
+        ?>
+    </div>
+</section>

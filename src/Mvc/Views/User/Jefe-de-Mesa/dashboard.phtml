@@ -1,0 +1,139 @@
+<?php
+
+/** @var $tiqueStats */
+
+$totalTiques = array_sum($tiqueStats['cantidades']);
+$percentResueltos = round(($tiqueStats['cantidades'][2] / array_sum($tiqueStats['cantidades'])) * 100, 1, PHP_ROUND_HALF_EVEN);
+$percentNoAplicable = round(($tiqueStats['cantidades'][1] / array_sum($tiqueStats['cantidades'])) * 100, 1, PHP_ROUND_HALF_EVEN);
+$percentAResolucion = round(($tiqueStats['cantidades'][0] / array_sum($tiqueStats['cantidades'])) * 100, 1, PHP_ROUND_HALF_EVEN);
+
+$colors = array_reverse(CHARTS_COLORS);
+$tipos = $tiqueStats['tipos'];
+$cantidadTipos = $tiqueStats['cantidadesTipos'];
+$totalTiques = array_sum($tiqueStats['cantidadesTipos']);
+$allTiqueTypes = $tiqueStats['allTiqueTypesData'];
+
+foreach ($allTiqueTypes as $index=>$data) {
+
+    $allTiqueTypes[$index]['cantidad'] = round(($data['cantidad']/$totalTiques) * 100, 1, PHP_ROUND_HALF_EVEN);
+}
+?>
+
+<div id="jefe-mesa-dashboard">
+    <h2 class="title has-text-black">Dashboard</h2>
+    <div class="is-flex charts-container is-justify-content-center mb-5">
+        <div class="canvas-charts">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="has-text-black p-4">
+            <p class="title is-size-5 mb-3">Resumen Estados</p>
+            <div class="pl-3 is-size-6">
+                <p class="is-text"><i class="is-green-chart fa-solid fa-square mr-1"></i> <span class="has-text-weight-light">Resueltos:</span> <?=$percentResueltos?>%</p>
+                <p class="is-text"><i class="is-yellow-chart fa-solid fa-square mr-1"></i> <span class="has-text-weight-light">A resolución:</span> <?=$percentAResolucion?>%</p>
+                <p class="is-text"><i class="is-red-chart fa-solid fa-square mr-1"></i> <span class=has-text-weight-light>No Aplicable:</span> <?=$percentNoAplicable?>%</p>
+            </div>
+        </div>
+    </div>
+    <div class="is-flex is-justify-content-center charts-container">
+        <div class="canvas-charts is-cake mt-5" >
+            <canvas style="width: 30% !important;" id="myCakeChart"></canvas>
+        </div>
+        <div class="has-text-black p-4">
+            <p class="title is-size-5 mb-3">Resumen Tipos</p>
+            <div class="pl-3 is-size-6">
+                <?php foreach ($allTiqueTypes as $index=>$tiqueType): ?>
+                <p class="is-text"><i class="<?=$colors[$index]?> fa-solid fa-square mr-1"></i> <span class="has-text-weight-light"><?=$tiqueType['nombre']?></span> <?=$tiqueType['cantidad']?>%</p>
+                <?php endforeach; ?>
+                <div id="total-tiques-desktop" class="mt-5 has-text-black">
+                    <p class="is-text mt-5 is-size-4"><span class="has-text-weight-light">Total Tiques: </span> <?=$totalTiques?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="total-tiques-mobile" class="mt-5 has-text-black">
+        <p class="is-text mt-5 is-size-4"><span class="has-text-weight-light">Total Tiques: </span> <?=$totalTiques?></p>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = <?php echo json_encode($tiqueStats['estados'])?>;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Resolución de Tiques',
+            data: <?php echo json_encode($tiqueStats['cantidades'])?>,
+            backgroundColor: [
+                'rgba(238, 213, 81, 0.2)',
+                'rgba(238, 81, 93, 0.2)',
+                'rgba(92, 238, 81, 0.2)',
+            ],
+            borderColor: [
+                'rgba(238, 213, 81, 0.8)',
+                'rgba(238, 81, 93, 0.8)',
+                'rgba(92, 238, 81, 0.8)',
+
+            ],
+            borderWidth: 1
+        }]
+    };
+</script>
+<script>
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+
+    let myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+<script>
+    const cakeData = {
+        labels:<?php echo json_encode($tiqueStats['tipos'])?>,
+        datasets: [{
+            label: 'My First Dataset',
+            data: <?php echo json_encode($tiqueStats['cantidadesTipos'])?>,
+            backgroundColor: [
+                'rgba(238, 148, 81, 0.2)',
+                'rgba(33, 188, 9, 0.2)',
+                'rgba(226, 81, 238, 0.2)',
+                'rgba(81, 238, 207, 0.2)',
+                'rgba(81, 86, 238, 0.2)',
+                'rgba(238, 81, 93, 0.2)',
+                'rgba(238, 213, 81, 0.2)',
+                'rgba(92, 238, 81, 0.2)'
+            ],
+            borderColor: [
+                'rgba(238, 148, 81, 0.4)',
+                'rgba(33, 188, 9, 0.4)',
+                'rgba(226, 81, 238, 0.4)',
+                'rgba(81, 238, 207, 0.8)',
+                'rgba(81, 86, 238, 0.8)',
+                'rgba(238, 81, 93, 0.8)',
+                'rgba(238, 213, 81, 0.8)',
+                'rgba(92, 238, 81, 0.8)'
+            ],
+            hoverOffset: 4
+        }]
+    };
+</script>
+<script>
+    const cakeConfig = {
+        type: 'doughnut',
+        data: cakeData,
+    };
+
+    let myCakeChart = new Chart(
+        document.getElementById('myCakeChart'),
+        cakeConfig
+    );
+</script>

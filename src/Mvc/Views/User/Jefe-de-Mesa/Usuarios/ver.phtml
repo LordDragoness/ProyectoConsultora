@@ -1,0 +1,38 @@
+<?php
+
+/** @var $data */
+?>
+<?php require_once __DIR__ . '/modal/modal-usuarios.phtml' ?>
+<div id="jefe-mesa-usuario-2" class="is-100-width has-text-black is-full p-2 is-bordered">
+    <div class="table-container is-100-width">
+        <table class="table is-100-width">
+            <thead class="has-text-centered thead-centered">
+                <tr >
+                    <th>RUT</th>
+                    <th>Rol</th>
+                    <th>Area</th>
+                    <th>Acceso</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-centered">
+            <?php foreach ($data as $user): ?>
+                <tr class="has-text-centered">
+                    <td class="pt-2 pb-2"><?=$user['rut']?></td>
+                    <td title="<?=$user['tipoUsuario']?>" class="pt-2 pb-2 is-pointer is-underlined"><?=$user['id_tipo']?></td>
+                    <td title="<?=$user['area']?>" class="pt-2 pb-2 is-pointer is-underlined"><?=$user['id_area']?></td>
+                    <td class="pt-2 pb-2"><?php $msg = boolval($user['habilitado']) ? 'Permitido' : 'Denegado'; echo $msg;?></td>
+                    <td class="pt-2 pb-2"><?=$user['nombre']?> <?=$user['apellido']?></td>
+                    <td class="pt-2 pb-2"><?=$user['correo']?></td>
+                    <td class="pt-2 pb-2">
+                        <button class="button is-success is-size-7 js-modal-trigger acciones-usuarios" data-target="acciones-usuarios" >Acciones</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php require_once __DIR__.'../../../pagination.phtml'?>
+    </div>
+</div>

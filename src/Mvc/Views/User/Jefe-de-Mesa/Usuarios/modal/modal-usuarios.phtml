@@ -1,0 +1,35 @@
+
+
+<div id="acciones-usuarios" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card modal-450-width">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Acciones Usuarios</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- Content ... -->
+            <div class="container has-text-black is-flex is-justify-content-center is-flex-direction-column">
+                <div class="mr-auto ml-auto mb-5 is-flex is-flex-direction-column">
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">RUT:</b>  <span id="replaceRut"></span></p>
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">Nombre:</b>  <span id="replaceName"></span></p>
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">Rol:</b>  <span id="replaceRol"></span></p>
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">Area:</b>  <span id="replaceArea"></span></p>
+                    <p class="is-text is-size-4 is-inline-block"><b class="mr-2">Correo:</b>  <span id="replaceEmail"></span></p>
+                </div>
+                <div class="buttons is-justify-content-center">
+                    <form action="<?=BASE_URL?>" method="GET">
+                        <button id="disallow" class="button is-danger default-get-request">Deshabilitar Acceso</button>
+                    </form>
+                    <form action="<?=BASE_URL?>" method="GET" >
+                        <button id="allow" class="button is-success default-get-request">Habilitar Acceso</button>
+                    </form>
+                    <form action="<?=BASE_URL?>" method="GET">
+                        <button id="reset" class="button is-warning default-get-request">Resetear Contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="<?=BASE_URL?>/js/modal/modals-info.js"></script>

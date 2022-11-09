@@ -1,0 +1,49 @@
+<?php
+/** @var $tiqueStats */
+?>
+
+<div id="jefe-mesa-dashboard">
+    <h2 class="title has-text-black">Dashboard</h2>
+    <div class="is-flex charts-container is-justify-content-center mb-5">
+        <div class="canvas-charts">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <div class="pl-5 mt-4 pt-3">
+        <h2 class="title">Total Tiques: <?=$tiqueStats['totalTiques']?></h2>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = {
+        labels: [
+            'Cerrados',
+            'Disponibles',
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: <?php echo json_encode([$tiqueStats['finishedTiques'],$tiqueStats['availableTiques']])?>,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]
+    };
+</script>
+<script>
+    const config = {
+        type: 'doughnut',
+        data: data,
+    };
+
+    let myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+
+
+

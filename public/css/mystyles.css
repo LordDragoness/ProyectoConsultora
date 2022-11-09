@@ -1,0 +1,255 @@
+:root {
+    --panelBorderStyle: 1px solid #AAA;
+    --panelBorderRadius: 15px;
+}
+
+.has-border {
+    border: var(--panelBorderStyle);
+    border-radius: var(--panelBorderRadius);
+}
+
+.special-shadow-div {
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow:  5px 5px 10px #a8a8a8,
+    -5px -5px 10px #ffffff;
+}
+
+#rootContainer {
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow:  5px 5px 10px #a8a8a8,
+    -5px -5px 10px #ffffff;
+    min-height: 500px;
+
+}
+
+#menuJefeMesa {
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow:  5px 5px 10px #a8a8a8,
+    -5px -5px 10px #ffffff;
+    min-height: 200px !important;
+}
+
+
+#jefe-mesa-usuario-2 {
+
+}
+
+.is-100-width {
+    width: 100%;
+}
+
+.thead-centered > tr > th {
+    text-align: center !important;
+}
+
+.tbody-centered > tr > th,td {
+    text-align: center !important;
+}
+
+@media ( min-width: 768px ) {
+    .modal-450-width {
+        width: 450px !important;
+    }
+
+    .modal-400-width {
+        width: 400px !important;
+    }
+
+
+
+
+}
+
+@media ( min-width: 1300px ) {
+    .canvas-charts.is-cake {
+        padding: 0 4rem 4rem !important;
+    }
+}
+
+@media (min-width: 768px ) and  (max-width: 1299px){
+    .canvas-charts.is-cake {
+        padding: 0 2rem 2rem;
+    }
+}
+
+@media ( max-width: 950px ) {
+
+    #total-tiques-mobile {
+        display: block !important;
+    }
+
+    #total-tiques-desktop {
+        display: none;
+    }
+
+    .charts-container {
+        flex-direction: column-reverse
+
+    }
+
+    .canvas-charts {
+        width: 100% !important;
+    }
+
+
+    #root {
+        display: block !important;
+    }
+}
+
+
+
+.is-pointer {
+    cursor: pointer;
+}
+
+.is-100v-height {
+    height: calc(100vh - 53px);
+}
+
+.is-450-width {
+    width: 450px;
+}
+
+.is-200-width {
+    width: 200px;
+}
+
+#update-action-container {
+    display: none;
+}
+
+.has-max-content-width {
+    width: max-content;
+}
+
+.is-absolute {
+    position: absolute;
+}
+
+.radio-text {
+    font-size: 14px;
+}
+
+.max-width-320{
+    max-width: 320px;
+}
+
+.is-45percent-witdth {
+    width: 45%;
+}
+
+.is-green-chart {
+    border: 1px solid rgba(92, 238, 81, 0.8);
+    color: rgba(92, 238, 81, 0.2);
+}
+
+.is-green-weight-chart {
+    border: 1px solid rgba(33, 188, 9, 0.8);
+    color: rgba(33, 188, 9, 0.2);
+}
+
+.is-yellow-chart {
+    border: 1px solid rgba(238, 213, 81, 0.8);
+    color: rgba(238, 213, 81, 0.2);
+}
+
+.is-red-chart {
+    border: 1px solid rgba(238, 81, 93, 0.8);
+    color: rgba(238, 81, 93, 0.2);
+}
+
+.is-purple-chart {
+    border: 1px solid rgba(226, 81, 238, 0.8);
+    color: rgba(226, 81, 238, 0.2);
+}
+
+.is-blue-chart {
+    border: 1px solid rgba(81, 86, 238, 0.8);
+    color: rgba(81, 86, 238, 0.2);
+}
+
+
+.is-light-blue-chart {
+    border: 1px solid rgba(81, 238, 207, 0.8);
+    color: rgba(81, 238, 207, 0.2);
+}
+
+.is-strange-orange-chart {
+    border: 1px solid rgba(238, 148, 81, 0.8);
+    color: rgba(238, 148, 81, 0.2);
+}
+
+
+#total-tiques-mobile {
+    display: none;
+}
+
+#jefe-mesa-dashboard {
+    width: 100%;
+}
+
+
+.canvas-charts {
+    width: 45%;
+}
+
+
+.icon-white {
+    color: white;
+}
+
+.icon-custom {
+    padding: 10px 1px 1px;
+    display: block;
+    color: white;
+}
+
+.cancel-hover {
+
+}
+
+.cancel-hover:hover {
+    color: white !important;
+    cursor: default;
+}
+
+.icon-custom:hover {
+    color: white;
+    background: transparent !important;
+}
+
+
+.passwordInput{
+    margin-top: 5%;
+    text-align :center;
+}
+
+#change-pass-container {
+    display: none;
+}
+
+.displayBadge{
+    margin-top: 5%;
+    display: none;
+    text-align :center;
+}
+
+
+html, body {
+    min-height: 100vh;
+    background: #f6f6f6;
+    margin: 0;
+    width: 100%;
+}
+
+.force-chart-full-width {
+    width: 80% !important;
+}
+
+
+
+
